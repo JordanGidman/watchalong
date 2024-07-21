@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Header from "../components/Header";
+import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const StyledHome = styled.div`
   height: 100vh;
@@ -14,14 +16,29 @@ const StyledHome = styled.div`
 `;
 
 const StyledMain = styled.main`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 60%;
-  width: 40%;
+  height: 100%;
+  width: 100%;
+  padding: 6rem;
 
-  background-color: var(--color-grey-800);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+`;
+
+const StyledBox = styled.div`
+  background-color: rgb(31, 41, 55, 0.7);
+  color: #fff;
+  z-index: 999;
+  height: 20vh;
+  width: 30vw;
+
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
 `;
 
 const StyledImg = styled.img`
@@ -29,15 +46,41 @@ const StyledImg = styled.img`
   top: 0;
   left: 0;
   filter: brightness(70%);
+  z-index: -999;
+`;
+
+const H1 = styled.h1`
+  font-size: 1.6rem;
 `;
 
 function Home() {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate(`/room/${1}`);
+  }
+
   return (
     <StyledHome>
-      <StyledImg src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
       <Header />
+      <StyledImg src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
 
-      <StyledMain></StyledMain>
+      <StyledMain>
+        <StyledBox>
+          <H1>Watch your favourite videos together.</H1>
+          <Button onClick={handleClick}>Create Room</Button>
+        </StyledBox>
+        <StyledBox>
+          <H1>A little about watch along.</H1>
+          <span>
+            Watch Along allows you to watch your favourite videos / streamers
+            together with friends. I watch videos with my friends through
+            discord streams but some quality is lost. This way the users will
+            watch the same video in sync with each other. In the full quality of
+            the actual content.
+          </span>
+        </StyledBox>
+      </StyledMain>
     </StyledHome>
   );
 }

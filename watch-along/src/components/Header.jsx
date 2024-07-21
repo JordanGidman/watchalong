@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  /* background-color: var(--color-grey-800); */
+  /* background-color: rgb(31, 41, 55, 0.4); */
 
   z-index: 999;
 `;
@@ -18,8 +18,15 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
-      <div>Logo</div>
-      <Button>create room</Button>
+      <div
+        style={{
+          fontSize: "2rem",
+          color: "#fff",
+        }}
+      >
+        Logo
+      </div>
+      <Button>Create room</Button>
     </StyledHeader>
   );
 }
