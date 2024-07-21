@@ -1,0 +1,54 @@
+Watchalong 
+
+A youtube or other video watching platform allowing users to create a room to watch with as many as their friends as they would like via a shared link.
+
+My friends and i in discord often watch youtube videos together via discord share screen. I figured this could be a useful site especially for those who do not use discord.
+
+USER STORIES
+-As a user i want to create a room. 
+-As a user i want to create a temp username for that room
+-As a user i want to paste a video link into an input and play the video
+-As a user i want to add urls to a queue
+-As a user i want to be able to send an invite url to enter the room
+-As a user i want to see the video pasted from the link at the same time as my friends
+
+FEATURES
+-Create Room
+-Create Temp Usernames
+-Any user enters a link
+-Video plays for all users
+-Chatbox
+-Playlist / Queue videos
+
+PAGES
+-Home/Create room
+-Room
+
+COMPONENTS
+-Home
+-Input
+-Button
+-Room
+-VideoPlayer ?
+-Playlist
+-ChatContainer
+-MessageList
+-Message
+-MessageInput
+-TypingIndicator
+
+
+LIBRARIES
+-Chatscope for the chat part of the room
+-Styled Components
+
+TECH
+-HTML/CSS
+-ReactJS
+-Vite
+
+
+
+
+
+
