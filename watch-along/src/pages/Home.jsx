@@ -2,6 +2,9 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
+import db from "../firebase";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 
 const StyledHome = styled.div`
   height: 100vh;
@@ -56,8 +59,23 @@ const H1 = styled.h1`
 function Home() {
   const navigate = useNavigate();
 
-  function handleClick() {
-    navigate(`/room/${1}`);
+  async function createRoom() {
+    try {
+      const id = nanoid();
+      console.log(id);
+
+      await setDoc(doc(db, "rooms", id), {
+        state: "PLAYING",
+        time: 0,
+        volume: 50,
+        users: [nanoid(5)],
+        playlsit: [],
+      });
+
+      navigate(`/room/${id}`);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   }
 
   return (
@@ -68,7 +86,7 @@ function Home() {
       <StyledMain>
         <StyledBox>
           <H1>Watch your favourite videos together.</H1>
-          <Button onClick={handleClick}>Create Room</Button>
+          <Button onClick={createRoom}>Create Room</Button>
         </StyledBox>
         <StyledBox>
           <H1>A little about watch along.</H1>

@@ -13,7 +13,7 @@ function App() {
           <Route element={<AppLayout />}>
             <Route index element={<Navigate replace to="home" />} />
             <Route path="home" element={<Home />} />
-            <Route path="room/id" element={<Room />} />
+            <Route path="room/:id" element={<Room />} />
           </Route>
         </Routes>
       </BrowserRouter>
