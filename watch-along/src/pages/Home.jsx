@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import db from "../firebase";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { ref, set } from "firebase/database";
 
 const StyledHome = styled.div`
   height: 100vh;
@@ -59,23 +60,35 @@ const H1 = styled.h1`
 function Home() {
   const navigate = useNavigate();
 
-  async function createRoom() {
-    try {
-      const id = nanoid();
-      console.log(id);
+  // async function createRoom() {
+  //   try {
+  //     const id = nanoid();
+  //     console.log(id);
 
-      await setDoc(doc(db, "rooms", id), {
-        state: "PLAYING",
-        time: 0,
-        volume: 50,
-        users: [nanoid(5)],
-        playlsit: [],
-      });
+  //     await setDoc(doc(db, "rooms", id), {
+  //       state: "PLAYING",
+  //       time: 0,
+  //       volume: 50,
+  //       users: [nanoid(5)],
+  //       playlsit: [],
+  //     });
 
-      navigate(`/room/${id}`);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
+  //     navigate(`/room/${id}`);
+  //   } catch (e) {
+  //     console.error("Error adding document: ", e);
+  //   }
+  // }
+
+  function createRoom() {
+    const id = nanoid();
+
+    set(ref(db, "rooms/" + id), {
+      time: 0,
+      state: "PAUSED",
+      playlist: [],
+    });
+
+    navigate(`/room/${id}`);
   }
 
   return (
